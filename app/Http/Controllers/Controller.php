@@ -67,4 +67,10 @@ class Controller extends BaseController
         $buku->update($request->all());
         return redirect()->route('buku.index')->with('success', 'Buku updated successfully.');
     }
+    public function destroy($id)
+    {
+        $buku = Buku::find($id);
+        $buku->delete();
+        return redirect()->route('buku.index')->with('success', 'Buku deleted successfully.');
+    }
 }
