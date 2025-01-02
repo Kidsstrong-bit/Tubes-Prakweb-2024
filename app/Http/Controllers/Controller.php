@@ -37,4 +37,9 @@ class Controller extends BaseController
         Buku::create($request->all());
         return redirect()->route('buku.index')->with('success', 'Buku created successfully.');
     }
+    public function show($id)
+    {
+        $buku = Buku::find($id);
+        return view('buku.show', compact('buku'));
+    }
 }
