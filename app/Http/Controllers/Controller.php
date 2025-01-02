@@ -38,7 +38,7 @@ class Controller extends BaseController
         return redirect()->route('buku.index')->with('success', 'Buku created successfully.');
     }
 
-    
+
     public function show($id)
     {
         $buku = Buku::find($id);
@@ -50,5 +50,21 @@ class Controller extends BaseController
     {
         $buku = Buku::find($id);
         return view('buku.edit', compact('buku'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'judul' => 'required',
+            'genre' => 'required',
+            'penulis' => 'required',
+            'penerbit' => 'required',
+            'tahun' => 'required',
+            'jumlah' => 'required',
+        ]);
+
+        $buku = Buku::find($id);
+        $buku->update($request->all());
+        return redirect()->route('buku.index')->with('success', 'Buku updated successfully.');
     }
 }
