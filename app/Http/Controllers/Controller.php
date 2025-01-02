@@ -8,5 +8,19 @@ use Illuminate\Routing\Controller as BaseController;
 
 class Controller extends BaseController
 {
-    use AuthorizesRequests, ValidatesRequests;
+    public function index()
+    {
+        $bukus = Buku::all();
+        return view('buku.index', compact('bukus'));
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        return view('buku.create');
+    }
 }
