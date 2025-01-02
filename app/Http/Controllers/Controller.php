@@ -23,4 +23,18 @@ class Controller extends BaseController
     {
         return view('buku.create');
     }
+    public function store(Request $request)
+    {
+        $request->validate([
+            'judul' => 'required',
+            'genre' => 'required',
+            'penulis' => 'required',
+            'penerbit' => 'required',
+            'tahun' => 'required',
+            'jumlah' => 'required',
+        ]);
+
+        Buku::create($request->all());
+        return redirect()->route('buku.index')->with('success', 'Buku created successfully.');
+    }
 }
